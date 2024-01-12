@@ -36,7 +36,7 @@ app.post("/convertImage", upload.single("file"), async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 80;
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
