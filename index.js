@@ -2,7 +2,6 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
-// const token = process.env.AUTH_TOKEN;
 const express = require("express");
 const multer = require("multer");
 const sharp = require("sharp");
@@ -13,6 +12,10 @@ app.use(cors());
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
+
+app.get("/", (req, res) => {
+  res.status(200).send("AWS EC2 is Running!");
+});
 
 app.post("/convertImage", upload.single("file"), async (req, res) => {
   const imageQuality = +req.body.quality;
@@ -35,5 +38,5 @@ app.post("/convertImage", upload.single("file"), async (req, res) => {
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`Webhook is listening on port ${PORT}`);
+  console.log(`Listening on port ${PORT}`);
 });
